@@ -145,6 +145,29 @@ ecryptfs-mount-private
 
 И т.д.
 
+
+Копипаст используемых комманд:
+```
+cfdisk
+df -h
+apt-get install cryptsetup
+cryptsetup --version
+cryptsetup -y -v --type luks2 luksFormat /dev/vda3
+cryptsetup luksOpen /dev/vda3 disk
+ls /dev/mapper/disk
+sudo dd if=/dev/zero of=/dev/mapper/disk
+mkfs.ext4 /dev/mapper/disk
+mkdir .secret
+mount /dev/mapper/disk .secret/
+nano my-file
+cat my-file
+umount .secret
+cat /dev/mapper/disk
+cryptsetup luksClose disk
+```
+
+
+
 ## Дополнительные задания (со звёздочкой*)
 
 Эти задания дополнительные, то есть не обязательные к выполнению, и никак не повлияют на получение вами зачёта по этому домашнему заданию. Вы можете их выполнить, если хотите глубже шире разобраться в материале
